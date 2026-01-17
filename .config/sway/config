@@ -22,7 +22,7 @@ set $right l
 # Your preferred terminal emulator
 set $term foot
 # Your preferred application launcher
-set $menu wmenu-run -S "b16286"
+set $menu wmenu-run -i -S "b16286"
 
 gaps inner 5px
 hide_edge_borders smart
