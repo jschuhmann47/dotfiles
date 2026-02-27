@@ -4,9 +4,9 @@
     "height": 30,
     "spacing": 1,
     "margin": 0,
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/weather", "custom/quote"],
+    "modules-left": ["sway/workspaces", "sway/mode"],
         "modules-center": [],                                                                           //battery   //disk     // uptime      //updates        // systray
-    "modules-right": ["clock","pulseaudio", "backlight", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/uptime", "custom/updates", "tray", "custom/power"],
+    "modules-right": ["clock","wireplumber", "backlight", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/updates", "tray", "custom/power"],
 
 
     "sway/workspaces": {
@@ -47,12 +47,12 @@
         "on-click-right": "playerctl next",
     },
 
-    "custom/weather": {
-        "exec": "curl 'https://wttr.in/?format=1'",
-        "interval": 3600,
-        "format": "{}",
-        "tooltip": true
-    },
+//    "custom/weather": {
+//        "exec": "curl 'https://wttr.in/?format=1'",
+//        "interval": 3600,
+//        "format": "{}",
+//        "tooltip": true
+//    },
 
     "custom/quote": {
         "format": "󰚛 {}",
@@ -66,14 +66,8 @@
         "format": "󰚰 {}",
         "exec": "checkupdates | wc -l",
         "interval": 3600,
-        "on-click": "foot sudo pacman -Syu",
+        "on-click": "alacritty sudo pacman -Syu",
         "signal": 8
-    },
-
-    "custom/uptime": {
-        "format": "󰔟 {}",
-        "exec": "uptime -p | sed 's/up //; s/ days/d/; s/ hours/h/; s/ minutes/m/'",
-        "interval": 60
     },
 
     "idle_inhibitor": {
@@ -86,8 +80,8 @@
     },
 
     "clock": {
-        "format": "󰥔 {:%H:%M}",
-        "format-alt": "󰃮 {:%Y-%m-%d}",
+        "format": "󰥔 {:%H:%M %d-%m-%Y}",
+        // "format-alt": "󰃮 {:%Y-%m-%d}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode"          : "month",
@@ -104,9 +98,9 @@
             }
         },
         "actions": {
-            "on-click-right": "mode",
-            "on-click-forward": "tz_up",
-            "on-click-backward": "tz_down",
+            // "on-click-right": "mode",
+            // "on-click-forward": "tz_up",
+            // "on-click-backward": "tz_down",
             "on-scroll-up": "shift_up",
             "on-scroll-down": "shift_down"
         }
@@ -116,20 +110,20 @@
         "format": "󰘚 {usage}%",
         "tooltip": true,
         "interval": 1,
-        "on-click": "foot htop"
+        "on-click": "alacritty htop"
     },
 
     "memory": {
         "format": "󰍛 {}%",
         "interval": 1,
-        "on-click": "foot htop"
+        "on-click": "alacritty htop"
     },
 
     "temperature": {
         "critical-threshold": 80,
         "format": "{icon} {temperatureC}°C",
         "format-icons": ["󱃃", "󰔏", "󱃂"],
-        "on-click": "foot s-tui"
+        "on-click": "alacritty s-tui"
     },
 
     "battery": {
@@ -152,27 +146,14 @@
         "format-disconnected": "󰖪 Disconnected",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "tooltip-format": "{ifname}: {ipaddr}",
-        "on-click": "foot nmtui"
+        "on-click": "alacritty nmtui"
     },
 
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "󰂰 {volume}%",
-        "format-bluetooth-muted": "󰂲 {icon}",
-        "format-muted": "󰝟",
-        "format-icons": {
-            "headphone": "󰋋",
-            "hands-free": "󰥰",
-            "headset": "󰋎",
-            "phone": "󰏲",
-            "portable": "󰄝",
-            "car": "󰄋",
-            "default": ["󰕿", "󰖀", "󰕾"]
-        },
-        "on-click": "pavucontrol",
-        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
-        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%"
+    "wireplumber": {
+        "format": "{volume}% {icon}",
+        "format-muted": "",
+        // "on-click": "helvum",
+        "format-icons": ["", "", ""]
     },
 
     "backlight": {
@@ -186,7 +167,7 @@
         "interval": 30,
         "format": "󰋊 {percentage_used}%",
         "path": "/",
-        // "on-click": "foot gdu /"
+        // "on-click": "alacritty gdu /"
     },
 
     "tray": {
@@ -202,7 +183,8 @@
 		    	"shutdown": "shutdown now",
 		    	"reboot": "reboot",
 		    	"suspend": "systemctl suspend",
-		    	"hibernate": "systemctl hibernate"
+		    	"hibernate": "systemctl hibernate",
+                "logout": "logout"
 		    }
     }
 }

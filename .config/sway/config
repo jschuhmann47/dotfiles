@@ -20,7 +20,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term foot
+set $term alacritty
 # Your preferred application launcher
 set $menu wmenu-run -i -S "b16286"
 
@@ -47,7 +47,7 @@ client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/juani/Pictures/kobayashi.jpg fill
+output * bg /home/juani/Pictures/hibike_wallpaper.webp fill
 #
 # Example configuration:
 #
@@ -72,12 +72,12 @@ output * bg /home/juani/Pictures/kobayashi.jpg fill
 #
 # Example configuration:
 #
-   input type:touchpad {
-       dwt enabled
-       tap enabled
-       natural_scroll enabled
-       middle_emulation enabled
-   }
+# input type:touchpad {
+#     dwt enabled
+#     tap enabled
+#     natural_scroll enabled
+#     middle_emulation enabled
+# }
 #
    input type:keyboard {
        xkb_layout "latam"
@@ -96,6 +96,9 @@ output * bg /home/juani/Pictures/kobayashi.jpg fill
 
     # Kill focused window
     bindsym $mod+Shift+q kill
+
+    # Lock screen
+    bindsym $mod+z exec swaylock
 
     # Start your launcher
     bindsym $mod+d exec $menu
