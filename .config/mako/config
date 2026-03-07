@@ -1,4 +1,3 @@
-default-timeout=7
-
-[urgency=high]
-ignore-timeout=1
+default-timeout=7000
+background-color=#B16286AA
+border-color=#EEDDE5AA

@@ -25,8 +25,13 @@ set $term alacritty
 set $menu wmenu-run -i -S "b16286"
 
 gaps inner 5px
-hide_edge_borders smart
-# default_border pixel 2
+
+default_border pixel 2
+default_floating_border pixel 2
+hide_edge_borders --i3 smart
+smart_borders on
+# smart_gaps on
+titlebar_border_thickness 0
 
 # black #32302f;
 # red #cc241d;
@@ -239,7 +244,7 @@ bindsym $mod+r mode "resize"
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
     # Special key to take a screenshot with grim
-    bindsym Print exec grimshot save area --notify
+    bindsym Print exec grimshot copy area --notify
 
 
 # Status Bar:

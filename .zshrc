@@ -1,16 +1,16 @@
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+export EDITOR="vim"
+
 zstyle :compinstall filename '/home/juani/.zshrc'
 
 autoload -Uz compinit
-# autoload -U colors && colors
+autoload -U colors && colors
 compinit
-# End of lines added by compinstall
+
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 # Disable ctrl-s freezing
 stty stop undef
@@ -27,7 +27,11 @@ lfcd () {
         [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
     fi
 }
+ytm () {
+    [ -z "$1" ] && echo "No argument supplied" && return;
+    mpv --no-audio-display --volume=50 --ytdl-format=bestaudio "ytdl://ytsearch:$*"
+}
+
 bindkey -s '^o' '^ulfcd\n'
 
 source <(fzf --zsh)
-eval "$(starship init zsh)"

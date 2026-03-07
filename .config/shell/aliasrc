@@ -3,8 +3,9 @@
 alias dotfiles="/usr/bin/git --git-dir='$HOME/.dotfiles/' --work-tree='$HOME'"
 alias lf=lfub
 alias lfub="$HOME/.scripts/lf/lfub"
-[ -x "$(command -v nvim)" ] && alias vim="nvim"
+alias mpva="mpv --no-audio-display --volume=50"
 
+[ -x "$(command -v nvim)" ] && alias vim="nvim"
 
 for command in mount umount sv pacman updatedb su shutdown poweroff reboot ; do
 	alias $command="sudo $command"

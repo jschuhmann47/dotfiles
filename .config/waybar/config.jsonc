@@ -4,7 +4,7 @@
     "height": 30,
     "spacing": 1,
     "margin": 0,
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["sway/workspaces", "sway/mode","sway/window"],
         "modules-center": [],                                                                           //battery   //disk     // uptime      //updates        // systray
     "modules-right": ["clock","wireplumber", "backlight", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/updates", "tray", "custom/power"],
 
@@ -36,6 +36,15 @@
 
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "sway/window": {
+    "format": "{title}",
+    "max-length": 100,
+    "rewrite": {
+       "(.*) — LibreWolf": "🌎 $1",
+       "(.*) - VIM": " $1",
+        }
     },
 
     "custom/playerctl": {
@@ -184,7 +193,7 @@
 		    	"reboot": "reboot",
 		    	"suspend": "systemctl suspend",
 		    	"hibernate": "systemctl hibernate",
-                "logout": "logout"
+                "logout": "swaymsg exit"
 		    }
     }
 }
