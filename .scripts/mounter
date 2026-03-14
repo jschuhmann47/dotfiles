@@ -26,13 +26,13 @@ getmount(){
 	test -n "$mp"
 	if [ ! -d "$mp" ]; then
 		mkdiryn=$(printf "No\\nYes" | wmenu -i -p "$mp does not exist. Create it?")
-		[ "$mkdiryn" = "Yes" ] && (mkdir -p "$mp" || sudo mkdir -p "$mp")
+		[ "$mkdiryn" = "Yes" ] && (mkdir -p "$mp" || sudo -A mkdir -p "$mp")
 	fi
 }
 
 attemptmount(){
 		# Attempt to mount without a mountpoint, to see if drive is in fstab.
-		sudo mount "$chosen" || return 1
+		sudo -A mount "$chosen" || return 1
 		notify-send "💾Drive Mounted." "$chosen mounted."
 		exit
 }
@@ -44,9 +44,10 @@ case "$chosen" in
 		parttype="$(echo "$lsblkoutput" | grep "$chosen")"
 		attemptmount || getmount
 		case "${parttype##* }" in
-			vfat) sudo mount -t vfat "$chosen" "$mp" -o rw,umask=0000 ;;
-			btrfs|ext4) sudo mount "$chosen" "$mp" ;;
-			*) sudo mount "$chosen" "$mp" -o uid="$(id -u)",gid="$(id -g)" ;;
+			vfat) sudo -A mount -t vfat "$chosen" "$mp" -o rw,umask=0000 ;;
+			btrfs|ext4) sudo -A mount "$chosen" "$mp" ;;
+			ntfs) sudo -A mount -t ntfs3 "$chosen" "$mp" ;;
+			*) sudo -A mount "$chosen" "$mp" -o uid="$(id -u)",gid="$(id -g)" ;;
 		esac
 		notify-send "💾Drive Mounted." "$chosen mounted to $mp."
 		;;

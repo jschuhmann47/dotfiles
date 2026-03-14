@@ -4,8 +4,8 @@
     "height": 30,
     "spacing": 1,
     "margin": 0,
-    "modules-left": ["sway/workspaces", "sway/mode","sway/window"],
-        "modules-center": [],                                                                           //battery   //disk     // uptime      //updates        // systray
+    "modules-left": ["sway/workspaces", "sway/mode", "custom/weather", "sway/window"],
+    "modules-center": [],
     "modules-right": ["clock","wireplumber", "backlight", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/updates", "tray", "custom/power"],
 
 
@@ -39,7 +39,7 @@
     },
 
     "sway/window": {
-    "format": "{title}",
+    "format": " {title}",
     "max-length": 100,
     "rewrite": {
        "(.*) — LibreWolf": "🌎 $1",
@@ -56,12 +56,11 @@
         "on-click-right": "playerctl next",
     },
 
-//    "custom/weather": {
-//        "exec": "curl 'https://wttr.in/?format=1'",
-//        "interval": 3600,
-//        "format": "{}",
-//        "tooltip": true
-//    },
+    "custom/weather": {
+        "exec": "curl 'https://wttr.in/?format=1'",
+        "interval": 3600,
+        "format": "{}"
+    },
 
     "custom/quote": {
         "format": "󰚛 {}",
@@ -75,7 +74,7 @@
         "format": "󰚰 {}",
         "exec": "checkupdates | wc -l",
         "interval": 3600,
-        "on-click": "alacritty sudo pacman -Syu",
+        // "on-click": "alacritty sudo pacman -Syu",
         "signal": 8
     },
 
@@ -119,20 +118,20 @@
         "format": "󰘚 {usage}%",
         "tooltip": true,
         "interval": 1,
-        "on-click": "alacritty htop"
+        // "on-click": "alacritty htop"
     },
 
     "memory": {
         "format": "󰍛 {}%",
         "interval": 1,
-        "on-click": "alacritty htop"
+        // "on-click": "alacritty htop"
     },
 
     "temperature": {
         "critical-threshold": 80,
         "format": "{icon} {temperatureC}°C",
         "format-icons": ["󱃃", "󰔏", "󱃂"],
-        "on-click": "alacritty s-tui"
+        // "on-click": "alacritty s-tui"
     },
 
     "battery": {
@@ -173,7 +172,7 @@
     },
 
     "disk": {
-        "interval": 30,
+        "interval": 3600,
         "format": "󰋊 {percentage_used}%",
         "path": "/",
         // "on-click": "alacritty gdu /"
