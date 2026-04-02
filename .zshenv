@@ -1,6 +1,5 @@
 export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
-
-export PATH="$PATH:$(find ~/.scripts -type d | paste -sd ':' -)"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 export EDITOR="vim"
 export TERMINAL="alacritty"

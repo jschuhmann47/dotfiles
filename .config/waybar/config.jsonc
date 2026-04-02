@@ -6,7 +6,7 @@
     "margin": 0,
     "modules-left": ["sway/workspaces", "sway/mode", "custom/weather", "sway/window"],
     "modules-center": [],
-    "modules-right": ["clock","wireplumber", "backlight", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/updates", "tray", "custom/power"],
+    "modules-right": ["idle_inhibitor", "clock","wireplumber", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/updates", "tray", "custom/power"],
 
 
     "sway/workspaces": {
