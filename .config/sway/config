@@ -22,7 +22,7 @@ set $right l
 # Your preferred terminal emulator
 set $term alacritty
 # Your preferred application launcher
-set $menu wmenu-run
+set $menu wmenu-run -i -S "b16286"
 set $browser librewolf
 
 gaps inner 5px

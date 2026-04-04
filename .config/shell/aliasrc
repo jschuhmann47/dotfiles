@@ -18,8 +18,8 @@ alias \
 	bc="bc -ql" \
 	mkd="mkdir -pv" \
 	yt="yt-dlp --embed-metadata -i" \
-	yta="yt -x -f bestaudio/best" \
-	ytt="yt --skip-download --write-thumbnail" \
+	yta="yt-dlp -x -f bestaudio/best" \
+	ytt="yt-dlp --skip-download --write-thumbnail" \
 	ffmpeg="ffmpeg -hide_banner"
 
 # Colorize commands when possible.
