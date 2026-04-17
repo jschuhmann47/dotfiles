@@ -1,0 +1,10 @@
+#!/bin/sh
+
+choice="$(printf "Shutdown\nReboot\nLogout" | wmenu -i || exit 0)" 
+
+case $choice in
+    Shutdown) shutdown -h now;;
+    Reboot) reboot ;;
+    Logout) swaymsg exit ;;
+esac
+

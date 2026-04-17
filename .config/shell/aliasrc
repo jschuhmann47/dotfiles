@@ -4,6 +4,12 @@ alias dotfiles="/usr/bin/git --git-dir='$HOME/.dotfiles/' --work-tree='$HOME'"
 alias lf=lfub
 alias lfub="$HOME/.local/bin/lf/lfub"
 alias mpva="mpv --no-audio-display --no-video --volume=50"
+alias ytpl="yta -o \"%(playlist_index)s - %(title)s.%(ext)s\" --extractor-args \"youtube:lang=en\""
+
+ytm () {
+    [ -z "$1" ] && echo "No argument supplied" && return;
+    mpva --ytdl-format=bestaudio "ytdl://ytsearch:$*"
+}
 
 [ -x "$(command -v nvim)" ] && alias vim="nvim"
 

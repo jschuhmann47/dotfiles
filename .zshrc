@@ -16,9 +16,4 @@ stty stop undef
 
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 
-ytm () {
-    [ -z "$1" ] && echo "No argument supplied" && return;
-    mpv --no-audio-display --volume=50 --ytdl-format=bestaudio "ytdl://ytsearch:$*"
-}
-
 source <(fzf --zsh)
