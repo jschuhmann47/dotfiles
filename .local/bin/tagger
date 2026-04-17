@@ -11,9 +11,10 @@ Options:
 	-d: year of publication
 	-g: genre
 	-c: comment
+    -o: cover art
 You will be prompted for title, artist, album and track if not given." && exit 1 ;}
 
-while getopts "a:t:A:n:N:d:g:c:" o; do case "${o}" in
+while getopts "a:t:A:n:N:d:g:c:o:" o; do case "${o}" in
 	a) artist="${OPTARG}" ;;
 	t) title="${OPTARG}" ;;
 	A) album="${OPTARG}" ;;
@@ -22,6 +23,7 @@ while getopts "a:t:A:n:N:d:g:c:" o; do case "${o}" in
 	d) date="${OPTARG}" ;;
 	g) genre="${OPTARG}" ;;
 	c) comment="${OPTARG}" ;;
+	o) coverart="${OPTARG}" ;;
 	*) printf "Invalid option: -%s\\n" "$OPTARG" && err ;;
 esac done
 
@@ -38,12 +40,15 @@ trap 'rm -f $temp' HUP INT QUIT TERM PWR EXIT
 [ -z "$artist" ] && echo 'Enter an artist.' && read -r artist
 [ -z "$album" ] && echo 'Enter an album.' && read -r album
 [ -z "$track" ] && echo 'Enter a track number.' && read -r track
+[ -z "$coverart" ] && echo 'Enter a cover art.' && read -r coverart
 
-cp -f "$file" "$temp" && ffmpeg -i "$temp" -map 0 -y -codec copy \
+cp -f "$file" "$temp" && ffmpeg -i "$temp" -i "$coverart" -map 0 -y -codec copy \
 	-metadata title="$title" \
 	-metadata album="$album" \
 	-metadata artist="$artist" \
 	-metadata track="${track}${total:+/"$total"}" \
+    -id3v2_version 3 -metadata:s:v title="Album cover" -metadata:s:v comment="Cover (front)" \
 	${date:+-metadata date="$date"} \
 	${genre:+-metadata genre="$genre"} \
 	${comment:+-metadata comment="$comment"} "$file"
+

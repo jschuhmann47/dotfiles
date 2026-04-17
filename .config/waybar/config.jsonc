@@ -6,7 +6,7 @@
     "margin": 0,
     "modules-left": ["sway/workspaces", "sway/mode", "custom/weather", "sway/window"],
     "modules-center": [],
-    "modules-right": ["idle_inhibitor", "clock","wireplumber", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/updates", "tray", "custom/power"],
+    "modules-right": ["mpd", "clock","wireplumber", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/updates", "tray", "idle_inhibitor", "custom/power"],
 
 
     "sway/workspaces": {
@@ -47,27 +47,36 @@
         }
     },
 
-    "custom/playerctl": {
-        "format": " 󰐊 {}",
-        "return-type": "json",
-        "max-length": 40,
-        "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{artist}} - {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-        "on-click": "playerctl play-pause",
-        "on-click-right": "playerctl next",
+    "mpd": {
+        "format": "{stateIcon} {title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "Stopped ",
+        "interval": 10,
+        "consume-icons": {
+            "on": " " // Icon shows only when "consume" is on
+        },
+        "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ", // Icon grayed out when "random" is off
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "Album: {album}",
+        "tooltip-format-disconnected": "MPD (disconnected)"
     },
 
     "custom/weather": {
         "exec": "curl 'https://wttr.in/?format=1'",
         "interval": 3600,
         "format": "{}"
-    },
-
-    "custom/quote": {
-        "format": "󰚛 {}",
-        "interval": 3600,
-        "exec": "fortune -s",
-        "on-click": "fortune | yad --text-info --width=400 --height=200 --title='Fortune'",
-        "tooltip": true
     },
 
     "custom/updates": {
