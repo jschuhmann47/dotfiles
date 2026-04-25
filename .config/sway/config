@@ -20,7 +20,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty
+set $term foot
 # Your preferred application launcher
 set $menu wmenu-run -i -S "b16286"
 set $browser librewolf
@@ -69,6 +69,9 @@ output * bg /home/juani/Pictures/hibike_wallpaper.webp fill
           timeout 300 'swaylock -f -c 000000' \
           timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
           before-sleep 'swaylock -f -c 000000'
+
+for_window [class=".*"] inhibit_idle fullscreen
+for_window [app_id=".*"] inhibit_idle fullscreen
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when

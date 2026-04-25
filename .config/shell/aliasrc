@@ -13,6 +13,7 @@ ytm () {
 ytpl () {
     yt-dlp -x -f bestaudio/best -o "%(track,title)s.%(ext)s" --extractor-args "youtube:lang=en" \
         --embed-thumbnail --add-metadata --embed-metadata \
+        --cookies-from-browser "firefox:/home/$USER/.librewolf" \
         --parse-metadata "playlist_index:%(track_number)s" "$*"
 }
 

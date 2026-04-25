@@ -48,7 +48,7 @@
     },
 
     "mpd": {
-        "format": "{stateIcon} {title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+        "format": "{stateIcon} {title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
         "format-disconnected": "Disconnected ",
         "format-stopped": "",
         "interval": 10,
@@ -71,20 +71,21 @@
         },
         "tooltip-format": "Album: {album}",
         "tooltip-format-disconnected": "mpd disconnected",
+        "on-click": "rmpc togglepause"
         //"tooltip-format-stopped": "Idle"
     },
 
     "custom/weather": {
         "exec": "curl 'https://wttr.in/?format=1'",
         "interval": 3600,
-        "format": "{}"
+        "format": "{}",
+        "on-click": "foot -H curl https://wttr.in/"
     },
 
     "custom/updates": {
         "format": "󰚰 {}",
         "exec": "checkupdates | wc -l",
         "interval": 3600,
-        // "on-click": "alacritty sudo pacman -Syu",
         "signal": 8
     },
 
@@ -116,9 +117,6 @@
             }
         },
         "actions": {
-            // "on-click-right": "mode",
-            // "on-click-forward": "tz_up",
-            // "on-click-backward": "tz_down",
             "on-scroll-up": "shift_up",
             "on-scroll-down": "shift_down"
         }
@@ -128,20 +126,17 @@
         "format": "󰘚 {usage}%",
         "tooltip": true,
         "interval": 1,
-        // "on-click": "alacritty htop"
     },
 
     "memory": {
         "format": "󰍛 {}%",
         "interval": 1,
-        // "on-click": "alacritty htop"
     },
 
     "temperature": {
         "critical-threshold": 80,
         "format": "{icon} {temperatureC}°C",
         "format-icons": ["󱃃", "󰔏", "󱃂"],
-        // "on-click": "alacritty s-tui"
     },
 
     "battery": {
@@ -159,18 +154,17 @@
 
     "network": {
         "format-wifi": "󰖩 {essid} ({signalStrength}%)",
-        "format-ethernet": "󰈀 {ifname}",
+        "format-ethernet": "󰈀 {ipaddr}",
         "format-linked": "󰈀 {ifname} (No IP)",
         "format-disconnected": "󰖪 Disconnected",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "tooltip-format": "{ifname}: {ipaddr}",
-        "on-click": "alacritty nmtui"
+        // "on-click": "foot nmtui"
     },
 
     "wireplumber": {
         "format": "{volume}% {icon}",
         "format-muted": "",
-        // "on-click": "helvum",
         "format-icons": ["", "", ""]
     },
 
@@ -183,8 +177,10 @@
 
     "disk": {
         "interval": 3600,
-        "format": "󰋊 {percentage_used}%",
+        //"format": "󰋊 {percentage_used}%",
+        "format": "󰋊 {specific_used:0.0f}GiB/{specific_total:0.0f}GiB",
         "path": "/",
+        "unit": "GiB"
         // "on-click": "alacritty gdu /"
     },
 

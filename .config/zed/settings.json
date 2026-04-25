@@ -12,10 +12,14 @@
     "metrics": false,
   },
   "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "never",
+    "toggle_relative_line_numbers": true,
+  },
   "icon_theme": {
     "mode": "dark",
     "light": "Zed (Default)",
-    "dark": "Zed (Default)"
+    "dark": "Catppuccin Mocha",
   },
   "base_keymap": "VSCode",
   "ui_font_size": 16,
@@ -25,9 +29,19 @@
       "milliseconds": 1000,
     },
   },
+  "buffer_font_features": {
+    "calt": 0,
+  },
+  "terminal": {
+    "toolbar": {
+      "breadcrumbs": false,
+    },
+  },
+  "close_on_file_delete": true,
+  "ensure_final_newline_on_save": true,
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "One Dark",
+    "dark": "Catppuccin Mocha - No Italics",
   },
 }

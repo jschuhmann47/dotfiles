@@ -2,7 +2,7 @@ export PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
 export PATH="$PATH:$HOME/.cargo/bin"
 
 export EDITOR="vim"
-export TERMINAL="alacritty"
+export TERMINAL="foot"
 export BROWSER="librewolf"
 
 export XDG_CONFIG_HOME="$HOME/.config"
