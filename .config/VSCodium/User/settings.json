@@ -1,0 +1,19 @@
+{
+    "editor.minimap.enabled": false,
+    "files.autoSave": "afterDelay",
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "workbench.iconTheme": "catppuccin-mocha",
+    "editor.fontFamily": "FiraCode Nerd Font Mono",
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-k>": false,
+        "<C-c>": false,
+        "<C-u>": false,
+        "<C-v>": false,
+        "<C-x>": false,
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-h>": false
+    },
+    "keyboard.dispatch": "keyCode"
+}
