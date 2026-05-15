@@ -31,7 +31,7 @@
 @define-color white #d3c6aa;
 @define-color orange #e69875;
 
-/* Pastel TTY Colors */
+/* Pastel TTY Colors
 @define-color background #212121;
 @define-color background-light #3a3a3a;
 @define-color foreground #e0e0e0;
@@ -44,10 +44,10 @@
 @define-color cyan #a3e8e8;
 @define-color white #ffffff;
 @define-color orange #ff8952;
+*/
 
 
-
-/* Gruvbox Dark Colors */
+/* Gruvbox Dark Colors 
 @define-color background #282828;
 @define-color background-light #3c3836;
 @define-color foreground #ebdbb2;
@@ -60,7 +60,7 @@
 @define-color cyan #689d6a;
 @define-color white #ebdbb2;
 @define-color orange #d65d0e;
-
+*/
 
 
 /* Module-specific colors */
@@ -101,7 +101,8 @@
     border: none;
     border-radius: 0;
     font-family: "FiraCode Nerd Font";
-    font-size: 14px;
+    /*font-family: "Noto Color Emoji";*/
+    font-size: 13px;
     min-height: 0;
 }
 
@@ -109,8 +110,6 @@ window#waybar {
     background-color: @background;
     color: @foreground;
 }
-
-
 
 /* Common module styling with border-bottom */
 #mode, #mpd, #custom-weather, #custom-playerctl, #clock, #cpu,
@@ -143,6 +142,29 @@ window#waybar {
 }
 
 #workspaces button.urgent {
+    background-color: @workspaces-urgent-bg;
+    color: @workspaces-urgent-fg;
+}
+
+#tags button {
+    padding: 0 10px;
+    background-color: transparent;
+    color: @workspaces-color;
+    margin: 0;
+}
+
+#tags button:hover {
+    background: @background-light;
+    box-shadow: inherit;
+}
+
+#tags button.focused {
+    box-shadow: inset 0 -2px @workspaces-focused-fg;
+    color: @workspaces-focused-fg;
+    font-weight: 900;
+}
+
+#tags button.urgent {
     background-color: @workspaces-urgent-bg;
     color: @workspaces-urgent-fg;
 }

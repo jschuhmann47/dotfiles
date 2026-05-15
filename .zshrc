@@ -2,6 +2,7 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 bindkey -v
+setopt hist_ignore_all_dups
 
 zstyle :compinstall filename '"$HOME"/.zshrc'
 

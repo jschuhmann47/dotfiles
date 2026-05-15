@@ -1,0 +1,21 @@
+#!/bin/sh
+
+getdir(){
+	mp="$(find . -mindepth 1 -maxdepth 1 -type d 2>/dev/null -printf '%P\n' | wmenu -i -p "Where to download?")"
+	test -n "$mp" || { echo "Skipping"; exit 1; }
+	if [ ! -d "$mp" ]; then
+		mkdiryn=$(printf "No\\nYes" | wmenu -i -p "$mp does not exist. Create it?")
+		[ "$mkdiryn" = "Yes" ] && mkdir -p "$mp"
+		[ "$mkdiryn" = "No" ] && { echo "Skipping"; exit 1; }
+	fi
+}
+
+cd "$HOME/Music"
+getdir
+playlistUrl="$(wmenuprompt 'URL of playlist: ')"
+
+notify-send "Downloading $playlistUrl in $mp..."
+cd "$mp"
+ytpl "$playlistUrl"
+notify-send "Done!"
+

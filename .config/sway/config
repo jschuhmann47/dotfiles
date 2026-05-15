@@ -186,6 +186,7 @@ for_window [app_id=".*"] inhibit_idle fullscreen
 
     bindsym $mod+b exec $browser
     bindsym $mod+Shift+b exec $browser --private-window
+    bindsym $mod+Shift+s exec notify-send "Opening Steam..." && steam
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking

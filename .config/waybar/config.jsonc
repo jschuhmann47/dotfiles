@@ -1,57 +1,30 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 30,
+    "height": 26,
     "spacing": 1,
     "margin": 0,
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/weather", "sway/window"],
+    "modules-left": ["dwl/tags", "dwl/window"],
     "modules-center": [],
-    "modules-right": ["mpd", "wireplumber", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/updates", "tray", "clock", "idle_inhibitor", "custom/power"],
+    "modules-right": ["mpd", "custom/weather", "wireplumber", "network", "cpu", "memory", "temperature", "battery", "disk", "custom/updates", "tray", "clock", "idle_inhibitor"],
 
-
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{name}",
-        "format-icons": {
-            "1": "󰖟",
-            "2": "",
-            "3": "",
-            "4": "󰭹",
-            "5": "󰕧",
-            "6": "",
-            "7": "",
-            "8": "󰣇",
-            "9": "",
-            "10": ""
-        },
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": []
-        }
-    },
-
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-
-    "sway/window": {
+    "dwl/window": {
     "format": " {title}",
     "max-length": 100,
     "rewrite": {
        "(.*) — LibreWolf": "🌎 $1",
+       "(.*) — LibreWolf Private Browsing": "󰗹 $1",
        "(.*) - VIM": " $1",
         }
     },
 
     "mpd": {
-        "format": "{stateIcon} {title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+        "format": "{stateIcon} {title} - {artist}",
         "format-disconnected": "Disconnected ",
         "format-stopped": "",
-        "interval": 10,
+        "interval": 30,
+        //"max-length": 40,
+        //"min-length": 40,
         "consume-icons": {
             "on": " " // Icon shows only when "consume" is on
         },
@@ -79,14 +52,16 @@
         "exec": "curl 'https://wttr.in/?format=1'",
         "interval": 3600,
         "format": "{}",
-        "on-click": "foot -H curl https://wttr.in/"
+        "on-click": "foot -H curl https://wttr.in/",
+        "class": "weather"
     },
 
     "custom/updates": {
         "format": "󰚰 {}",
         "exec": "checkupdates | wc -l",
         "interval": 3600,
-        "signal": 8
+        "signal": 8,
+        "class": "updates"
     },
 
     "idle_inhibitor": {

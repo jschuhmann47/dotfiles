@@ -1,20 +1,11 @@
 #!/bin/sh
 
 alias dotfiles="/usr/bin/git --git-dir='$HOME/.dotfiles/' --work-tree='$HOME'"
-alias lf=lfub
-alias lfub="$HOME/.local/bin/lf/lfub"
 alias mpva="mpv --no-audio-display --no-video --volume=50"
 
 ytm () {
     [ -z "$1" ] && echo "No argument supplied" && return;
     mpva --ytdl-format=bestaudio "ytdl://ytsearch:$*"
-}
-
-ytpl () {
-    yt-dlp -x -f bestaudio/best -o "%(track,title)s.%(ext)s" --extractor-args "youtube:lang=en" \
-        --embed-thumbnail --add-metadata --embed-metadata \
-        --cookies-from-browser "firefox:/home/$USER/.librewolf" \
-        --parse-metadata "playlist_index:%(track_number)s" "$*"
 }
 
 mkcd ()
