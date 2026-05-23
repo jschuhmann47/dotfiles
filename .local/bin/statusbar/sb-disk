@@ -1,0 +1,3 @@
+#!/bin/sh
+# Defaults to sda2, since sda1 is usually the boot partition
+df -hl /dev/sda2 | grep "/dev" | awk '{ print $5 }'

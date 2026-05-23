@@ -1,5 +1,0 @@
-#!/bin/sh
-currentHour="$(date +%H)"
-results="$(grep "$currentHour" "$HOME"/Documents/reminders)"
-[ -n "$results" ] && notify-send "$results"
-

@@ -1,0 +1,4 @@
+#!/bin/sh
+songTitle=$(rmpc song | jq -r .metadata.title)
+[[ -n $songTitle ]] && { echo " $songTitle"; exit 0; }
+
