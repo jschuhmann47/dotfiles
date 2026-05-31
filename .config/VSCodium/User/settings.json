@@ -13,6 +13,7 @@
         "<C-x>": false,
         "<C-a>": false,
         "<C-f>": false,
+        "<C-w>": false,
         "<C-h>": false
     },
     "keyboard.dispatch": "keyCode",

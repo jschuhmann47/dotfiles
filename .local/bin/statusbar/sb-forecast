@@ -1,53 +1,90 @@
 #!/bin/sh
 
-# Displays today's precipication chance (☔), and daily low (🥶) and high (🌞).
-# Usually intended for the statusbar.
-
-url="${WTTRURL:-wttr.in}"
-weatherreport="${XDG_CACHE_HOME:-$HOME/.cache}/weatherreport"
+url="wttr.in?format=j1"
+weatherreport="/dev/shm/weatherreport"
 
 # Get a weather report from 'wttr.in' and save it locally.
-getforecast() { timeout --signal=1 2s curl -sf "$url/$LOCATION" > "$weatherreport" || exit 1; }
+getforecast() { timeout --signal=1 2s curl -sf "$url" > "$weatherreport" || exit 1; }
 
 # Forecast should be updated only once a day.
-checkforecast() {
-	[ -s "$weatherreport" ] && [ "$(stat -c %y "$weatherreport" 2>/dev/null |
-		cut -d' ' -f1)" = "$(date '+%Y-%m-%d')" ]
+# checkforecast() {
+# 	[ -s "$weatherreport" ] && [ "$(stat -c %y "$weatherreport" 2>/dev/null |
+# 		cut -d' ' -f1)" = "$(date '+%Y-%m-%d')" ]
+# }
+
+getcurrenttemp() {
+    echo "$weatherdata" |  jq -r ".current_condition[0].temp_C"
 }
 
-getprecipchance() {
-	echo "$weatherdata" | sed '16q;d' |    # Extract line 16 from file
-		grep -wo "[0-9]*%" |           # Find a sequence of digits followed by '%'
-		sort -rn |                     # Sort in descending order
-		head -1q                       # Extract first line
+getcurrentprecipitation() {
+    currHour=$(( $(date '+%-H') / 3 ))
+    echo "$weatherdata" |  jq -r ".weather[0].hourly[$currHour].chanceofrain"
 }
 
-getdailyhighlow() {
-	echo "$weatherdata" | sed '13q;d' |      # Extract line 13 from file
-		grep -o "m\\([-+]\\)*[0-9]\\+" | # Find temperatures in the format "m<signed number>"
-		sed 's/[+m]//g' |                # Remove '+' and 'm'
-		sort -g |                        # Sort in ascending order
-		sed -e 1b -e '$!d'               # Extract the first and last lines
+getweatherstatus() {
+    currHour=$(( $(date '+%-H') / 3 ))
+    weatherCode=$(echo "$weatherdata" |  jq -r ".weather[0].hourly[$currHour].weatherCode")
+    case "$weather_code" in
+        395|371|338|335|230)
+            icon="\U000f0f36" ;;  # nf-md-weather_snowy_heavy
+    
+        392)
+            icon="\U000f067f" ;;  # nf-md-weather_snowy_rainy
+    
+        389|386|200)
+            icon="\U000f067e" ;;  # nf-md-weather_lightning_rainy
+    
+        377|374|350)
+            icon="\U000f0f34" ;;  # nf-md-weather_hail
+    
+        368|332|329|326|323)
+            icon="\U000f0f61" ;;  # nf-md-weather_snowy
+    
+        365|362|320|317|314|311|284|281|185|182|179)
+            icon="\U000f0f68" ;;  # nf-md-weather_sleet
+    
+        359|356|308|305)
+            icon="\U000f0596" ;;  # nf-md-weather_pouring
+    
+        302|299)
+            icon="\U000f0598" ;;  # nf-md-weather_rainy_heavy
+    
+        353|296|293|266|263|176)
+            icon="\U000f0597" ;;  # nf-md-weather_rainy
+    
+        260|248|143)
+            icon="\U000f0591" ;;  # nf-md-weather_fog
+    
+        227)
+            icon="\U000f0f62" ;;  # nf-md-weather_snowy_windy
+    
+        122|119)
+            icon="\U000f0590" ;;  # nf-md-weather_cloudy
+    
+        116)
+            icon="\U000f0595" ;;  # nf-md-weather_partly_cloudy
+    
+        113)
+            icon="\U000f0599" ;;  # nf-md-weather_sunny
+    
+        *)
+            icon="\U000f0590" ;;  # nf-md-weather_cloudy (fallback)
+    esac
+    
+    printf '%b\n' "$icon"
 }
+
 
 readfile() { weatherdata="$(cat "$weatherreport")" ;}
 
 showweather() {
 	readfile
-	printf "☔%s 🥶%s° 🌞%s°\n" "$(getprecipchance)" $(getdailyhighlow)
+    printf " %s%% - %s %s°\n" "$(getcurrentprecipitation)" "$(getweatherstatus)" "$(getcurrenttemp)"
 }
 
-case $BLOCK_BUTTON in
-	1) setsid -f "$TERMINAL" -e less -Sf "$weatherreport" ;;
-	2) getforecast && showweather ;;
-	3) notify-send "🌈 Weather module" "\- Left click for full forecast.
-- Middle click to update forecast.
-☔: Chance of rain/snow
-🥶: Daily low
-🌞: Daily high" ;;
-	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
-esac
 
-checkforecast || getforecast
+# checkforecast || getforecast
+
+getforecast
 
 showweather

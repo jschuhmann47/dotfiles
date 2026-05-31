@@ -1,4 +1,0 @@
-#!/bin/sh
-
-wmenu -p "$1" <&- || echo
-
