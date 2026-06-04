@@ -4,7 +4,7 @@ url="wttr.in?format=j1"
 weatherreport="/dev/shm/weatherreport"
 
 # Get a weather report from 'wttr.in' and save it locally.
-getforecast() { timeout --signal=1 2s curl -sf "$url" > "$weatherreport" || exit 1; }
+getforecast() { curl --max-time 5.0  -sf "$url" > "$weatherreport" || exit 1; }
 
 # Forecast should be updated only once a day.
 # checkforecast() {

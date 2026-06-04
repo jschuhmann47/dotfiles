@@ -12,7 +12,7 @@ getdir(){
 
 cd "$HOME/Music" || { echo "Music dir does not exist!"; exit; }
 getdir
-playlistUrl="$(wmenuprompt 'URL of playlist: ')"
+playlistUrl="$(menuprompt 'URL of playlist: ')"
 
 notify-send "Downloading in $mp..."
 cd "$mp" || { echo "$mp dir not created"; exit; }

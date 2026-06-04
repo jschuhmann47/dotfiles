@@ -1,4 +1,4 @@
 #!/bin/sh
 
-mew -p "$1" <&- || echo
+wmenu -p "$1" <&- || echo
 

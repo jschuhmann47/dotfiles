@@ -1,6 +1,6 @@
 #!/bin/sh
 
-choice="$(printf "Shutdown\nReboot\nLogout" | mew -i || exit 0)" 
+choice="$(printf "Shutdown\nReboot\nLogout" | wmenu -i || exit 0)" 
 
 case $choice in
     Shutdown) shutdown now;;
