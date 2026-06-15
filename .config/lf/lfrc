@@ -23,7 +23,7 @@ cmd open ${{
 	image/*) imv $f ;;
 	audio/*|video/x-ms-asf) mpv --audio-display=no --volume=50  $f ;;
 	video/*) mpv $f -quiet >/dev/null 2>&1 ;;
-	application/pdf|application/vnd.djvu|application/epub*|application/vnd.amazon.ebook|application/x-mobipocket-ebook) zathura $fx >/dev/null 2>&1 ;;
+	application/pdf|application/vnd.djvu|application/epub*|application/vnd.amazon.ebook|application/x-mobipocket-ebook|application/java-archive) zathura $fx >/dev/null 2>&1 ;;
 	application/pgp-encrypted) $EDITOR $fx ;;
 	# application/vnd.openxmlformats-officedocument.wordprocessingml.document|application/vnd.oasis.opendocument.text|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet|application/vnd.oasis.opendocument.spreadsheet|application/vnd.oasis.opendocument.spreadsheet-template|application/vnd.openxmlformats-officedocument.presentationml.presentation|application/vnd.oasis.opendocument.presentation-template|application/vnd.oasis.opendocument.presentation|application/vnd.ms-powerpoint|application/vnd.oasis.opendocument.graphics|application/vnd.oasis.opendocument.graphics-template|application/vnd.oasis.opendocument.formula|application/vnd.oasis.opendocument.database) libreoffice $fx >/dev/null 2>&1 ;;
         application/octet-stream) case ${f##*.} in

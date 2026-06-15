@@ -205,8 +205,9 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_c,           quit,             {0} },
     { MODKEY,		             XKB_KEY_F9,          spawn,            {.v = (const char*[]){ "mounter", NULL } } },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_F9,          spawn,            {.v = (const char*[]){ "unmounter", NULL } } },
-    { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_F12,         spawn,            {.v = (const char*[]){ "menushutdown", NULL } } },
-	{ 0,	  	                 XKB_KEY_Print,       spawn,            {.v = (const char*[]){ "flameshot", "gui", NULL } } },
+    { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Delete,      spawn,            {.v = (const char*[]){ "menushutdown", NULL } } },
+	{ 0,	  	                 XKB_KEY_Print,       spawn,            {.v = (const char*[]){ "grimshot", "copy", "area", NULL } } },
+	{ WLR_MODIFIER_SHIFT,	  	 XKB_KEY_Print,       spawn,            {.v = (const char*[]){ "grimshot", "save", "area", NULL } } },
 
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },

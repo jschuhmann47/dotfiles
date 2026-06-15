@@ -14,8 +14,10 @@ ex	🎯
 *.webp	🖼
 *.ico	🖼
 *.jpg	📸
+*.png	📸
 *.jpe	📸
 *.jpeg	📸
+*.webp	📸
 *.gif	🖼
 *.svg	🗺
 *.tif	🖼
@@ -28,6 +30,7 @@ ex	🎯
 *.pdf	📚
 *.djvu	📚
 *.epub	📚
+*.mobi	📚
 *.csv	📓
 *.xlsx	📓
 *.tex	📜
