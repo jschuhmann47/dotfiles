@@ -17,14 +17,12 @@ getcurrenttemp() {
 }
 
 getcurrentprecipitation() {
-    currHour=$(( $(date '+%-H') / 3 ))
     echo "$weatherdata" |  jq -r ".weather[0].hourly[$currHour].chanceofrain"
 }
 
 getweatherstatus() {
-    currHour=$(( $(date '+%-H') / 3 ))
     weatherCode=$(echo "$weatherdata" |  jq -r ".weather[0].hourly[$currHour].weatherCode")
-    case "$weather_code" in
+    case "$weatherCode" in
         395|371|338|335|230)
             icon="\U000f0f36" ;;  # nf-md-weather_snowy_heavy
     
@@ -78,6 +76,7 @@ getweatherstatus() {
 readfile() { weatherdata="$(cat "$weatherreport")" ;}
 
 showweather() {
+    currHour=$(( $(date '+%-H') / 3 ))
 	readfile
     printf " %s%% - %s %s°\n" "$(getcurrentprecipitation)" "$(getweatherstatus)" "$(getcurrenttemp)"
 }

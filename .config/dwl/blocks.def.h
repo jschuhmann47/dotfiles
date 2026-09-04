@@ -3,9 +3,9 @@ static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 	{"", "sb-rmpc",	            0,		10},
 
-	{"", "sb-forecast",	        3600,		0},
+	{"", "sb-forecast",	        3600,	0},
 
-	{" ", "sb-wireplumber",    3600,		11},
+	{" ", "sb-wireplumber",    0,		11},
 
 	{"󰘚 ", "sb-cpu",	        5,		0},
 
@@ -13,13 +13,13 @@ static const Block blocks[] = {
 
 	{"󰍛 ", "sb-memory",	        5,		0},
 
-	{"󰋊 ", "sb-disk",	        3600,		0},
+	{"󰋊 ", "sb-disk",	        3600,	0},
 
 	{"", "sb-battery",	        60,		0},
 
 	{"󰥔 ", "sb-datetime",		5,		0},
 
-	{"󰚰 ", "sb-updates",	    3600,		0},
+	{"󰚰 ", "sb-updates",	    3600,	12},
 	/* Updates whenever "pkill -SIGRTMIN+10 someblocks" is ran */
 	/* {"", "date '+%b %d (%a) %I:%M%p'",					0,		10}, */
 };

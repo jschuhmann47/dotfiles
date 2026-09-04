@@ -1,0 +1,28 @@
+#!/bin/bash
+set -euo pipefail
+
+[[ $# -le 2 ]] && echo "Missing args (artist, album name, pattern to extract)" && exit 0;
+
+artist=$1
+albumName=$2
+patternToExtract=$3
+cover="cover.jpg"
+
+userConfirm=false
+for song in *.opus; do
+    #extractedTitle="${song/$patternToExtract/}"
+    extractedTitle=$(echo "$song" | sed -e "s/$patternToExtract//g")
+    extractedTitle="${extractedTitle::-5}" # to remove .opus
+    trackNumberTag=$(opustags "$song" | grep -i "tracknumber")
+    trackNumber="${trackNumberTag##*"tracknumber="}"
+    trackNumber="${trackNumber##*"TRACKNUMBER="}"
+    echo "Previewed title: $extractedTitle, number: $trackNumber"
+    if [[ $userConfirm == false ]] && [[ "$(read -r -e -p 'Continue? [y/N]> '; echo "$REPLY")" == [Yy]* ]]; then
+        userConfirm=true
+    else
+        if [[ $userConfirm == false ]]; then
+            exit 0
+        fi
+    fi
+    opustags "$song" --set-cover "$cover" --set "title=$extractedTitle" --set "artist=$artist" --set "album=$albumName" --set "tracknumber=$trackNumber" -i
+done

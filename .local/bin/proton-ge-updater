@@ -36,10 +36,10 @@ cd $tmpDir
 echo "installing version $version"
 
 # download tarball
-curl -sLOJ "$(echo "$latestRelease" | grep browser_download_url | cut -d\" -f4 | grep .tar.gz)"
+curl -sLOJ "$(echo "$latestRelease" | grep browser_download_url | cut -d\" -f4 | grep .tar.gz | grep x86)"
 
 # download checksum
-curl -sLOJ "$(echo "$latestRelease" | grep browser_download_url | cut -d\" -f4 | grep .sha512sum)"
+curl -sLOJ "$(echo "$latestRelease" | grep browser_download_url | cut -d\" -f4 | grep x86 | grep .sha512sum)"
 
 # check tarball with checksum
 sha512sum -c ./*.sha512sum
@@ -48,9 +48,10 @@ sha512sum -c ./*.sha512sum
 tar -xf GE-Proton*.tar.gz -C "$dir"
 
 # copy release notes
-echo -e "$(echo "$latestRelease" | grep body | cut -d\" -f4)" >> "$dir$version/release_note.txt"
+#echo -e "$(echo "$latestRelease" | grep body | cut -d\" -f4)" >> "$dir$version/release_note.txt"
 
 cd ..
 rm -r $tmpDir
 
 echo "version $version installed"
+

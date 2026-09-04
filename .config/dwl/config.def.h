@@ -46,7 +46,7 @@ static int log_level = WLR_ERROR;
 
 /* Autostart */
 static const char *const autostart[] = {
-        "systemctl", "--user", "import-environment", "WAYLAND_DISPLAY", NULL,
+        "systemctl", "--user", "import-environment", "WAYLAND_DISPLAY", "XDG_CURRENT_DESKTOP", NULL,
         "swaybg", "-i", "/home/juani/Pictures/hibike_wallpaper.webp", NULL,
         "/home/juani/.local/bin/statusbar/sb-mpdup", NULL,
         NULL /* terminate */
