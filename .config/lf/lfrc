@@ -1,5 +1,5 @@
 set previewer ~/.config/lf/previewer
-set cleaner ~/.config/lf/cleaner
+#set cleaner ~/.config/lf/cleaner
 
 # Based on Luke Smith's config
 

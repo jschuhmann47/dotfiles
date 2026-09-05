@@ -150,7 +150,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 
 /* commands */
 static const char *termcmd[] = { TERMINAL, NULL };
-static const char *menucmd[] = { "mew-run", "-i", NULL };
+static const char *menucmd[] = { "wmenu-run", "-i", NULL };
 static const char *browsercmd[] = { BROWSER, NULL };
 
 static const Key keys[] = {
@@ -205,6 +205,8 @@ static const Key keys[] = {
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_c,           quit,             {0} },
     { MODKEY,		             XKB_KEY_F9,          spawn,            {.v = (const char*[]){ "mounter", NULL } } },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_F9,          spawn,            {.v = (const char*[]){ "unmounter", NULL } } },
+   	{ MODKEY,	                 XKB_KEY_F10,         spawn,            SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; kill -45 $(pidof someblocks)") },
+	{ MODKEY,		             XKB_KEY_F11,         spawn,            SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; kill -45 $(pidof someblocks)") },
     { MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Delete,      spawn,            {.v = (const char*[]){ "menushutdown", NULL } } },
 	{ 0,	  	                 XKB_KEY_Print,       spawn,            {.v = (const char*[]){ "grimshot", "copy", "area", NULL } } },
 	{ WLR_MODIFIER_SHIFT,	  	 XKB_KEY_Print,       spawn,            {.v = (const char*[]){ "grimshot", "save", "area", NULL } } },

@@ -44,7 +44,7 @@ case "$(printf "%s\n" "$(readlink -f "$1")" | tr '[:upper:]' '[:lower:]')" in
     *.docx) docx2txt "$1" - ;;
     *.mobi ) ebook-meta "$1" ;;
     *.epub ) 
-        [ ! -f "${CACHE}.jpg" ] && python "$HOME/Downloads/epub_cover.py" "$1" "${CACHE}.jpg"
+        [ ! -f "${CACHE}.jpg" ] && python "$HOME/.local/bin/epub_cover.py" "$1" "${CACHE}.jpg"
         image_sixel "${CACHE}.jpg" "$2" "$3" "$4" "$5"
         ;;
     *.xls | *.xlsx)

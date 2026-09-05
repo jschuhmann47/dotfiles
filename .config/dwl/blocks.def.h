@@ -5,7 +5,7 @@ static const Block blocks[] = {
 
 	{"", "sb-forecast",	        3600,	0},
 
-	{" ", "sb-wireplumber",    0,		11},
+	{" ", "sb-wireplumber",    250000,	11},
 
 	{"󰘚 ", "sb-cpu",	        5,		0},
 
@@ -17,7 +17,7 @@ static const Block blocks[] = {
 
 	{"", "sb-battery",	        60,		0},
 
-	{"󰥔 ", "sb-datetime",		5,		0},
+	{"󰥔 ", "sb-datetime",		10,		0},
 
 	{"󰚰 ", "sb-updates",	    3600,	12},
 	/* Updates whenever "pkill -SIGRTMIN+10 someblocks" is ran */
